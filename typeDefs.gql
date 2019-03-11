@@ -1,9 +1,3 @@
-type Query {
-  posts: [Post]
-  users: [User]
-  messages: [Message]
-}
-
 type User {
   _id: ID,
   username: String! @unique
@@ -17,7 +11,7 @@ type User {
 type Post {
   title: String! @unique
   imageUrl: String!
-  categories: String!
+  categories: [String]!
   description: String!
   createdDate: String
   likes: Int
@@ -29,4 +23,13 @@ type Message {
   messageBody: String!
   messageDate: String
   messageUser: User!
+}
+
+type Query {
+  getUser: User
+}
+
+type Mutation {
+  addPost(title: String!, imageUrl: String!, categories: [String]!, description: String!, creatorId: ID):Post!
+  singupUser(username: String!, email: String!, password: String!): User!
 }

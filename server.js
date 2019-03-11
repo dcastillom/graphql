@@ -8,6 +8,8 @@ require('dotenv').config({ path: 'variables.env' })
 const filePath = path.join(__dirname, 'typeDefs.gql')
 const typeDefs = fs.readFileSync(filePath, 'utf-8')
 
+const resolvers = require('./resolvers')
+
 const User = require('./models/User')
 const Post = require('./models/Post')
 
@@ -19,6 +21,7 @@ mongoose
 
 const server = new ApolloServer({
   typeDefs,
+  resolvers,
   context: {
     User,
     Post

@@ -1,0 +1,32 @@
+type Query {
+  posts: [Post]
+  users: [User]
+  messages: [Message]
+}
+
+type User {
+  _id: ID,
+  username: String! @unique
+  email: String!
+  password: String!
+  avatar: String
+  joinDate: String
+  favorites: [Post]
+}
+
+type Post {
+  title: String! @unique
+  imageUrl: String!
+  categories: String!
+  description: String!
+  createdDate: String
+  likes: Int
+  createdBy: User!
+  messages: [Message]
+}
+
+type Message {
+  messageBody: String!
+  messageDate: String
+  messageUser: User!
+}
